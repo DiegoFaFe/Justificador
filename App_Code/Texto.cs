@@ -27,7 +27,7 @@ public class Texto
         {
             _palabras.Add(new Palabra(t));
         }
-        return _columnas == -1 ? "" : Justificar();
+        return (_columnas < 5 || _columnas > 61) ? "" : Justificar();//La comprobación se hará aquí, tras eliminar los botones
     }
     public string Refrescar(short c)
     {

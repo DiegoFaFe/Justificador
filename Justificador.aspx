@@ -4,8 +4,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" Runat="Server">
     <div class="container theme-showcase" role="main">
-
-      <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="jumbotron" style="text-justify:inter-word">
         <h1>Justificador de textos</h1>
         <p style="text-indent: 5%;">La prueba técnica consiste en escribir un algoritmo en C# que pida por pantalla un texto y un número. El entero representa un número de columnas por el que dividiremos el texto.</p>
@@ -39,19 +37,15 @@
               <h3 class="panel-title">Entrada de texto</h3>
             </div>
             <div class="panel-body">
-              <asp:TextBox class="col-sm-12" ID="TBEntrada" CssClass="form-control" runat="server" OnTextChanged="TBEntrada_TextChanged"></asp:TextBox>
+              <asp:TextBox class="col-sm-12" ID="TBEntrada" CssClass="form-control" runat="server" OnTextChanged="TBEntrada_TextChanged" style="resize:none;"></asp:TextBox>
             </div>
           </div>
           <div class="panel panel-primary">
             <div class="panel-heading">
-              <h3 class="panel-title">Número de caracteres por columna</h3>
-            </div>
-            <div class="panel-body" style="text-align: center;">
-              <h3>  
-                    <asp:LinkButton ID="BotonMenos" CssClass="btn btn-sm btn-primary" runat="server" OnClick="BotonMenos_Click"><span class="glyphicon glyphicon-minus"></span></asp:LinkButton>
-                    <asp:Label ID="LabelColumnas" CssClass="label label-primary" runat="server" Text="61"></asp:Label>
-                    <asp:LinkButton ID="BotonMas" CssClass="btn btn-sm btn-primary" runat="server" OnClick="BotonMas_Click"><span class="glyphicon glyphicon-plus"></span></asp:LinkButton>
-              </h3>
+              <div class="input-group">
+                  <div class="input-group-addon"><span class="glyphicon glyphicon-align-justify"/>Número de caracteres por columna</div>
+                  <asp:TextBox ID="SpinColumnas" CssClass="form-control input-lg" runat="server" type="number" min="5" max="61" step="1" Text="61" OnTextChanged="SpinColumnas_TextChanged"/>
+              </div>
             </div>
           </div>
         </div>
@@ -61,7 +55,7 @@
               <h3 class="panel-title">Texto justificado</h3>
             </div>
             <div class="panel-body">
-              <asp:TextBox class="col-sm-12" ID="TBSalida" CssClass="form-control" runat="server"></asp:TextBox>
+              <asp:TextBox class="col-sm-12" ID="TBSalida" CssClass="form-control" runat="server" style="resize:none;"></asp:TextBox>
             </div>
           </div>
         </div>
@@ -72,10 +66,26 @@
 
 
       <div class="page-header">
-        <h1>Notas</h1>
+        <h1>Notas
+        <div class="btn-group">
+            <a href="/Codigos.aspx#Justificador" class="btn btn-default">Códigos</a>
+            <a href="/Codigos.aspx#Justificador" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a href="https://github.com/DiegoFaFe/Justificador/archive/master.zip"><span class="glyphicon glyphicon-download"/>Descarga directa(.zip)</a></li>
+                <li><a href="https://github.com/DiegoFaFe/Justificador"><span class="fa fa-github"/>Github</a></li>
+                <li class="divider"></li>
+                <li><a href="#"><span class="glyphicon glyphicon-folder-open"/>Descarga Completa</a></li>
+            </ul>
+        </div>
+        </h1>
       </div>
       <div class="well">
-        <p></p>
+        <h3>v1.1 <small><time datetime="2016-12-10T22:10:19+01:00">10 de diciembre del 2016</time></small></h3>
+        <p style="text-indent: 5%;">-Se cambia la entrada del número de caracteres por columna a un spinbox</p>
+        <p style="text-indent: 5%;">-Se rebaja el tamaño mínimo de columna de 6 a 5</p>
+        <p style="text-indent: 5%;">-Ahora los guiones(-) no son contabilizados como caracteres</p>
+        <h3>v1.0 <small><time datetime="2016-11-30T12:37:52+01:00">30 de noviembre del 2016</time></small></h3>
+        <p style="text-indent: 5%;">-Primera versión completamente funcional</p>
       </div>
 
     </div>

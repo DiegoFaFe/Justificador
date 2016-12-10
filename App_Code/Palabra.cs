@@ -86,7 +86,7 @@ public class Palabra
     public Tuple<short, string> Formato(short columnas, short espacio)
     {
         if(_cadena==((char)10).ToString()) return new Tuple<short, string>(columnas,Environment.NewLine);
-        if (espacio >= _cadena.Length + (espacio < columnas ? 1 : 0))
+        if (espacio >= _cadena.Length + (espacio < columnas ? 1 : 0))//Si la línea no está vacia hay que contabilizar " "
         {
             return new Tuple<short, string>((short)(espacio - _cadena.Length - (espacio < columnas ? 1 : 0)),
                 espacio < columnas ? " " + _cadena : _cadena);
@@ -101,7 +101,7 @@ public class Palabra
                 formateado.Append(_char[i]);
                 if (i != _char.Length - 1) { continue; }
             }
-            if (espacio < formateado.Length + (espacio < columnas ? 2 : 1))//Espacio + guión o solo guión
+            if (espacio < formateado.Length + ( espacio < columnas && lineaUsada == 0 ? 1 : 0))//Espacio si la columna no está vacía
             {
                 if (lineaUsada>0) temp += "-";
                 temp += Environment.NewLine;

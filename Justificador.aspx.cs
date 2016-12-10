@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 public partial class Justificador : System.Web.UI.Page
 {
     protected enum Fases { Default, Final, Release, Test, Development }
     protected Fases Estado { get; private set; }
-    protected short Columnas;
     protected Texto texto;
 
     protected void Page_Load(object sender, EventArgs e)
@@ -18,14 +13,13 @@ public partial class Justificador : System.Web.UI.Page
 
         Title = "El Justificador";
         TBEntrada.AutoPostBack = true;
+        SpinColumnas.AutoPostBack = true;
         TBEntrada.TextMode = TextBoxMode.MultiLine;
         TBEntrada.Rows = 10;
         TBSalida.ReadOnly = true;
         TBSalida.TextMode = TextBoxMode.MultiLine;
         TBSalida.Rows = 10;
-
-        Columnas = Convert.ToInt16(LabelColumnas.Text);
-        texto = new Texto(Columnas, TBEntrada.Text);
+        texto = new Texto(Convert.ToInt16(SpinColumnas.Text), TBEntrada.Text);
     }
 
     protected string Estilo(Fases estado)
@@ -46,22 +40,8 @@ public partial class Justificador : System.Web.UI.Page
         TBSalida.Text = texto.Refrescar(TBEntrada.Text);
     }
 
-    protected void BotonMenos_Click(object sender, EventArgs eventArgs)
+    protected void SpinColumnas_TextChanged(object sender, EventArgs e)
     {
-        if (Columnas > 6)
-        { 
-            Columnas--;
-            LabelColumnas.Text = Columnas.ToString();
-        }
-        TBSalida.Text = texto.Refrescar(Columnas);
-    }
-    protected void BotonMas_Click(object sender, EventArgs eventArgs)
-    {
-        if (Columnas < 61)
-        {
-            Columnas++;
-            LabelColumnas.Text = Columnas.ToString();
-        }
-        TBSalida.Text = texto.Refrescar(Columnas);
+        TBSalida.Text = texto.Refrescar(Convert.ToInt16(SpinColumnas.Text));
     }
 }
